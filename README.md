@@ -8,7 +8,7 @@ This is an example web-based user registration project.
 ## Quick Start
 1. Clone the repository
     ```ssh
-    git clone 
+    git clone https://github.com/XuSage6397/springboot-registration.git
     ```
 1. Go to the project directory
     ```shell
