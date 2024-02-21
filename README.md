@@ -6,6 +6,11 @@
 This is an example web-based user registration project.
 
 ## Quick Start
+### Basic environment
+1. Java 17
+2. Mysql 5.7
+
+### Building
 1. Clone the repository
     ```ssh
     git clone https://github.com/XuSage6397/springboot-registration.git
@@ -19,6 +24,9 @@ This is an example web-based user registration project.
     mvn clean package spring-boot:repackage -Dmaven.test.skip=true
     ```
 1. Docker Build
+   ```shell
+   docker build -t springboot-registration:lastest .
+   ```
    
 ## Functionality requirements:
 1. The system shall provide a home page to the user

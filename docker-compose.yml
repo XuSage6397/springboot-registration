@@ -1,0 +1,24 @@
+services:
+    mysql-server:
+        image: mysql:latest
+        environment:
+            MYSQL_USER: xusage_finnplay
+            MYSQL_PASSWORD: xusage_finnplay
+            MYSQL_ROOT_PASSWORD: xusage_finnplay
+            MYSQL_DATABASE: xusage_finnplay
+        volumes:
+            - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+        ports:
+            - "3306:3306"
+
+    springboot-registration:
+        build: .
+        image: springboot-registration:latest
+        ports:
+            - "8080:8080"
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:mysql://mysql-server:3306/xusage_finnplay
+            SPRING_DATASOURCE_USERNAME: root
+            SPRING_DATASOURCE_PASSWORD: xusage_finnplay
+        depends_on:
+            - mysql-server
