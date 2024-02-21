@@ -7,9 +7,14 @@ services:
             MYSQL_ROOT_PASSWORD: xusage_finnplay
             MYSQL_DATABASE: xusage_finnplay
         volumes:
-            - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./docker/initdb.d:/docker-entrypoint-initdb.d
         ports:
             - "3306:3306"
+        healthcheck:
+            test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+            interval: 10s
+            timeout: 5s
+            retries: 30
 
     springboot-registration:
         build: .
@@ -21,4 +26,5 @@ services:
             SPRING_DATASOURCE_USERNAME: root
             SPRING_DATASOURCE_PASSWORD: xusage_finnplay
         depends_on:
-            - mysql-server
+            mysql-server:
+                condition: service_healthy
